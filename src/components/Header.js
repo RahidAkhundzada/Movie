@@ -1,5 +1,13 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, TextInput, Dimensions} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  Dimensions,
+  TouchableOpacity,
+  Image,
+} from 'react-native';
 
 const ww = Dimensions.get('window').width;
 const hh = Dimensions.get('window').height;
@@ -17,17 +25,22 @@ class Header extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.textStyle}> Welcome Movie App </Text>
-        <TextInput
-          placeholder="Search here...Batman"
-          placeholderTextColor="white"
-          style={styles.inputStyle}
-          onChangeText={Search =>
-            this.setState({
-              url: `http://api.tvmaze.com/search/shows?q=${Search}`,
-            })
-          }
-          value={this.state.Search}
-        />
+        <View style={{flexDirection: 'row'}}>
+          <TextInput
+            placeholder="Search..."
+            placeholderTextColor="white"
+            onFocus={() => this.onFocus()}
+            style={styles.inputStyle}
+            onChangeText={text => this.textChanged(text)}
+            value={this.state.text}
+          />
+          <TouchableOpacity onPress={() => this.Search()}>
+            <Image
+              style={{height: hh / 15, width: ww / 15}}
+              source={require('../Images/search2.png')}
+            />
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }

@@ -8,11 +8,6 @@ import Movies from './src/Screens/Movies';
 const StackApp = createStackNavigator();
 
 export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
   render() {
     return (
       <NavigationContainer>
